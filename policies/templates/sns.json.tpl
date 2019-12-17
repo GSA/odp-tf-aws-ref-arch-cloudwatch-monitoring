@@ -31,7 +31,7 @@
         "Service": "events.amazonaws.com"
       },
       "Action": "sns:Publish",
-      "Resource": "arn:aws:sns:${var.region}:${data.aws_caller_identity.current_user.account_id}:${var.sns_topic_alarms}"
+      "Resource": "${var.sns_arn}"
     }
   ]
 }
