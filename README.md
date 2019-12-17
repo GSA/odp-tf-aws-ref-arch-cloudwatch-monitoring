@@ -43,7 +43,3 @@ Alarms are created and sent to the SNS Topic when the following activity is dete
 * `CloudTrailConsoleSignInFailures`
 * `CloudTrailAuthorizationFailures`
 * `CloudTrailIAMPolicyChanges`
-
-## Author
-
-Module managed by [David Wells](https://github.com/david-wells-1)
