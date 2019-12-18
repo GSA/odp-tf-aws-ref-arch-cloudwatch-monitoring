@@ -17,10 +17,10 @@
         "sns:Publish",
         "sns:Receive"
       ],
-      "Resource": "${var.sns_arn}",
+      "Resource": "${sns_arn}",
       "Condition": {
         "StringEquals": {
-          "AWS:SourceOwner": "${data.aws_caller_identity.current_user.account_id}"
+          "AWS:SourceOwner": "${account_owner}"
         }
       }
     },
@@ -31,7 +31,7 @@
         "Service": "events.amazonaws.com"
       },
       "Action": "sns:Publish",
-      "Resource": "${var.sns_arn}"
+      "Resource": "${sns_arn}"
     }
   ]
 }
