@@ -30,12 +30,12 @@ resource "aws_kms_alias" "kms_sns_topic_events" {
 
 resource "aws_sns_topic" "sns_topic_alarms" {
   name = var.sns_topic_alarms
-  kms_master_key_id = "${aws_kms_key.kms_sns_topic_alarms.key_id}"
+  kms_master_key_id = aws_kms_key.kms_sns_topic_alarms.key_id
 }
 
 resource "aws_sns_topic" "sns_topic_events" {
   name = var.sns_topic_events
-  kms_master_key_id = "${aws_kms_key.kms_sns_topic_events.key_id}"
+  kms_master_key_id = aws_kms_key.kms_sns_topic_events.key_id
 }
 
 resource "aws_sns_topic_policy" "sns_policy_alarms" {
