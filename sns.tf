@@ -23,7 +23,7 @@ resource "aws_kms_key" "kms_sns_topic_events" {
   })
 }
 
-resource "aws_kms_alias" "kms_sns_topic_alarms" {
+resource "aws_kms_alias" "kms_sns_topic_events" {
   name          = var.kms_event_alias
   target_key_id = "${aws_kms_key.kms_sns_topic_events.key_id}"
 }
