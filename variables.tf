@@ -28,3 +28,34 @@ variable "treat_missing_data" {
   default     = "ignore"
 }
 
+variable "deletion_window" {
+  description = "value of how many days the key exsists after resource deletion"
+  default     = "30"
+}
+
+variable "is_enabled" {
+  type        = bool
+  description = "used for enabling/disabling of kms keys"
+  default     = "true"
+}
+
+variable "is_key_rotation_enabled" {
+  type        = bool
+  description = "used for enabling/disabling of automatic kms key rotation"
+  default     = "true"
+}
+
+variable "kms_alarm_alias" {
+  type        = string
+  description = "alias name for alarms kms key"
+  default     = "alias/cloudwatch_monitoring_alarms_key"
+}
+
+variable "kms_event_alias" {
+  type        = string
+  description = "alias name for events kms key"
+  default     = "alias/cloudwatch_monitoring_events_key"
+}
+
+
+
