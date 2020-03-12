@@ -46,8 +46,8 @@ commands:
             fi
 
 
-  tflint: 
-    description: "Runs tflint against terraform code."
+  tflint-tfsec: 
+    description: "Runs tflint and tfsec against CloudWatch terraform code."
     parameters:     
       terraform_dir:
         type: string
@@ -79,7 +79,7 @@ jobs:
       - run-terraform:
           terraform_dir: example
           run_command: validate
-      - tflint:
+      - tflint-tfsec:
           terraform_dir: ./
 
 workflows:
