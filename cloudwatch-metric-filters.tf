@@ -132,7 +132,7 @@ resource "aws_cloudwatch_log_metric_filter" "IAMPolicyChangesMetricFilter" {
 
 resource "aws_cloudwatch_log_metric_filter" "console_sign_in_without_mfa" {
   name           = "ConsoleSignInWithoutMfa"
-  pattern        = "{ ($.eventName = "ConsoleLogin") && ($.additionalEventData.MFAUsed != \"Yes\") }"
+  pattern        = "{ ($.eventName = \"ConsoleLogin\") && ($.additionalEventData.MFAUsed != \"Yes\") }"
   log_group_name = var.cloudwatch_log_group
 
   metric_transformation {
