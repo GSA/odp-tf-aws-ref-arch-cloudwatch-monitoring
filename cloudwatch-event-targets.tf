@@ -185,8 +185,6 @@ INPUT_TEMPLATE_EOF
   }
 }
 
-
-
 resource "aws_cloudwatch_event_target" "sns_iam_configuration_changes" {
   rule      = aws_cloudwatch_event_rule.iam_configuration_changes.name
   target_id = "CloudWatch-Event-iam_configuration_changes"
@@ -298,4 +296,3 @@ INPUT_TEMPLATE_EOF
 
   }
 }
-

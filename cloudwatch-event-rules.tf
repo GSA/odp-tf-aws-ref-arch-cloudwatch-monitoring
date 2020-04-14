@@ -31,6 +31,23 @@ PATTERN
 
 }
 
+resource "aws_cloudwatch_event_rule" "awsconfig" {
+  name        = "${var.appenv}-capture-aws-config-compliance-state-changes"
+  description = "Capture changes to AWS Config Rule compliance states"
+
+  event_pattern = <<PATTERN
+{
+  "source": [
+    "aws.config"
+  ],
+  "detail-type": [
+    "Config Rules Compliance Change"
+  ]
+}
+PATTERN
+
+}
+
 resource "aws_cloudwatch_event_rule" "ec2_changes" {
   name        = "${var.appenv}-capture-aws-ec2-modifications"
   description = "Capture each AWS ec2 Modficiation"
@@ -110,38 +127,6 @@ resource "aws_cloudwatch_event_rule" "network_gateway_changes" {
   "source": [
     "aws.cloudtrail"
   ]
-}
-PATTERN
-
-}
-
-resource "aws_cloudwatch_event_rule" "config_configuration_changes" {
-  name        = "${var.appenv}-capture-aws-config-configuration-modification"
-  description = "Capture changes to AWS Config service configuration "
-
-  event_pattern = <<PATTERN
-{
-  "source": [
-    "aws.config"
-  ],
-  "detail-type": [
-    "AWS API Call via CloudTrail"
-  ],
-  "detail": {
-    "eventSource": [
-      "config.amazonaws.com"
-    ],
-    "eventName": [
-      "DeleteDeliveryChannel",
-      "DeleteConfigurationRecorder",
-      "StopConfigurationRecorder",
-      "DeleteConfigRule",
-      "DeleteEvaluationResults",
-      "DeletePendingAggregationRequest",
-      "DeleteAggregationAuthorization",
-      "DeleteConfigurationAggregator"
-    ]
-  }
 }
 PATTERN
 
