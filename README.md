@@ -20,21 +20,19 @@ A Cloudwatch log group and Cloud Trail must setup outside this module.
 
  - S3 Modifications
    
-  - Config Compliance
+- Config Compliance
    
-   - Config Modifications
-   
-   - EC2 Modifications
-   
-   - Cloudtrail Modifications
-   
-   - Network Gateway Modifications
-   
-   - IAM Modifications
-   
-   - Guard Duty Modifications
-   
-   - STS Assume Role Events
+- EC2 Modifications
+
+- Cloudtrail Modifications
+
+- Network Gateway Modifications
+
+- IAM Modifications
+
+- Guard Duty Modifications
+
+- STS Assume Role Events
 
  **Cloudwatch Alarms**
 
@@ -45,6 +43,8 @@ A Cloudwatch log group and Cloud Trail must setup outside this module.
 - CMK Key Disable/Deletions
 
 - Console Signin's without MFA
+
+- Config Modifications
 
 - S3 Bucket Activity
 
@@ -68,17 +68,13 @@ A Cloudwatch log group and Cloud Trail must setup outside this module.
 
 ## Module Input Variables
 
-  *  `appenv` - The Applications Environment (Dev, Test, Prod)
+*  `appenv` - The Applications Environment (Dev, Test, Prod)
 
 *  `cloudtrail_name` - Specifies the name of the cloudtrail
 
 *  `cloudwatch_log_group` - The name of the pre-exsisting Log Group utilized by Cloudtrail
 
-*  `sns_topic_alarms` - The name of the created SNS Topic for Alarms
-
-*  `sns_topic_events` - The name of the created SNS Topic for Events
-
-*  `sns_topic_events` - The name of the created SNS Topic for Events
+*  `sns_topic_alarms` - The name of the created SNS Topic for Alarms and Events
 
 *  `alarm_namespace` - The namespace in which all alarms are set up
 
@@ -104,7 +100,6 @@ source = "github.com/GSA/odp-tf-aws-ref-arch-cloudwatch-monitoring"
 appenv = "${var.appenv}"
 cloudwatch_log_group = "${var.cloudwatch_log_group}"
 sns_topic_alarms = "${var.sns_topic_alarms}"
-sns_topic_events = "${var.sns_topic_events}"
 }
 ```
 **Remember to subscribe to the SNS Topics!**

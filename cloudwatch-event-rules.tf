@@ -132,38 +132,6 @@ PATTERN
 
 }
 
-resource "aws_cloudwatch_event_rule" "config_configuration_changes" {
-  name        = "${var.appenv}-capture-aws-config-configuration-modification"
-  description = "Capture changes to AWS Config service configuration "
-
-  event_pattern = <<PATTERN
-{
-  "source": [
-    "aws.config"
-  ],
-  "detail-type": [
-    "AWS API Call via CloudTrail"
-  ],
-  "detail": {
-    "eventSource": [
-      "config.amazonaws.com"
-    ],
-    "eventName": [
-      "DeleteDeliveryChannel",
-      "DeleteConfigurationRecorder",
-      "StopConfigurationRecorder",
-      "DeleteConfigRule",
-      "DeleteEvaluationResults",
-      "DeletePendingAggregationRequest",
-      "DeleteAggregationAuthorization",
-      "DeleteConfigurationAggregator"
-    ]
-  }
-}
-PATTERN
-
-}
-
 resource "aws_cloudwatch_event_rule" "iam_configuration_changes" {
   name        = "${var.appenv}-capture-aws-iam-configuration-modification"
   description = "Capture changes to AWS IAM configuration "
@@ -277,4 +245,3 @@ resource "aws_cloudwatch_event_rule" "assume_fullAdmin_event" {
 PATTERN
 
 }
-

@@ -8,10 +8,6 @@ variable "sns_topic_alarms" {
   description = "The friendly name for the SNS topic to be created"
 }
 
-variable "sns_topic_events" {
-  type        = string
-  description = "The friendly name for the SNS topic to be created"
-}
 
 variable "cloudwatch_log_group" {
   type        = string
