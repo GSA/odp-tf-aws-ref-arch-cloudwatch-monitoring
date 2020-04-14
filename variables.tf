@@ -8,11 +8,6 @@ variable "sns_topic_alarms" {
   description = "The friendly name for the SNS topic to be created"
 }
 
-variable "sns_topic_events" {
-  type        = string
-  description = "The friendly name for the SNS topic to be created"
-}
-
 variable "cloudwatch_log_group" {
   type        = string
   description = "The name of the cloudwatch log group being utilized by cloudtrail"
@@ -49,12 +44,6 @@ variable "kms_alarm_alias" {
   type        = string
   description = "alias name for alarms kms key"
   default     = "alias/cloudwatch_monitoring_alarms_key"
-}
-
-variable "kms_event_alias" {
-  type        = string
-  description = "alias name for events kms key"
-  default     = "alias/cloudwatch_monitoring_events_key"
 }
 
 
