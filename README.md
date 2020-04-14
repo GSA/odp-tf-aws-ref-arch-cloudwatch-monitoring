@@ -20,21 +20,19 @@ A Cloudwatch log group and Cloud Trail must setup outside this module.
 
  - S3 Modifications
    
-  - Config Compliance
+- Config Compliance
    
-   - Config Modifications
-   
-   - EC2 Modifications
-   
-   - Cloudtrail Modifications
-   
-   - Network Gateway Modifications
-   
-   - IAM Modifications
-   
-   - Guard Duty Modifications
-   
-   - STS Assume Role Events
+- EC2 Modifications
+
+- Cloudtrail Modifications
+
+- Network Gateway Modifications
+
+- IAM Modifications
+
+- Guard Duty Modifications
+
+- STS Assume Role Events
 
  **Cloudwatch Alarms**
 
@@ -45,6 +43,8 @@ A Cloudwatch log group and Cloud Trail must setup outside this module.
 - CMK Key Disable/Deletions
 
 - Console Signin's without MFA
+
+- Config Modifications
 
 - S3 Bucket Activity
 
@@ -68,7 +68,7 @@ A Cloudwatch log group and Cloud Trail must setup outside this module.
 
 ## Module Input Variables
 
-  *  `appenv` - The Applications Environment (Dev, Test, Prod)
+*  `appenv` - The Applications Environment (Dev, Test, Prod)
 
 *  `cloudtrail_name` - Specifies the name of the cloudtrail
 
