@@ -260,6 +260,3 @@ resource "aws_cloudwatch_event_rule" "assume_fullAdmin_event" {
 PATTERN
 
 }
-
-{ ($.eventName = "ConsoleLogin") && ($.additionalEventData.MFAUsed != "Yes") }'
-
