@@ -132,7 +132,7 @@ resource "aws_cloudwatch_log_metric_filter" "IAMPolicyChangesMetricFilter" {
 
 resource "aws_cloudwatch_log_metric_filter" "console_sign_in_without_mfa" {
   name           = "ConsoleSignInWithoutMfa"
-  pattern        = "{ ($.eventName = ConsoleLogin) && ($.additionalEventData.MFAUsed = No) }"
+  pattern        = "{ ($.eventName = "ConsoleLogin") && ($.additionalEventData.MFAUsed != "Yes") }"
   log_group_name = var.cloudwatch_log_group
 
   metric_transformation {
@@ -181,4 +181,21 @@ resource "aws_cloudwatch_log_metric_filter" "root_usage" {
     default_value = "0"
   }
 }
+
+# CIS 3.13
+
+resource "aws_cloudwatch_log_metric_filter" "route_changes" {
+  name           = "RouteChanges"
+  pattern        = "{ ($.eventName = CreateRoute) || ($.eventName = CreateRouteTable) || ($.eventName = ReplaceRoute) || ($.eventName = ReplaceRouteTableAssociation) || ($.eventName = DeleteRouteTable) || ($.eventName = DeleteRoute) || ($.eventName = DisassociateRouteTable) }"
+  log_group_name = var.cloudwatch_log_group
+
+  metric_transformation {
+    name          = "RouteChanges"
+    namespace     = var.alarm_namespace
+    value         = "1"
+    default_value = "0"
+  }
+
+}
+
 

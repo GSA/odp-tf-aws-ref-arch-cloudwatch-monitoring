@@ -208,3 +208,35 @@ resource "aws_cloudwatch_metric_alarm" "CloudTrailIAMPolicyChanges" {
   alarm_description   = "Alarms when an API call is made to change an IAM policy."
 }
 
+# CIS 3.9
+
+resource "aws_cloudwatch_metric_alarm" "config_changes" {
+  alarm_name          = "ConfigChanges"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = aws_cloudwatch_log_metric_filter.config_changes.id
+  namespace           = "CloudTrailMetrics"
+  period              = "300"
+  statistic           = "Sum"
+  threshold           = "1"
+  treat_missing_data  = "notBreaching"
+  alarm_actions       = [aws_sns_topic.sns_topic_alarms.arn]
+  alarm_description   = "Alarms when an API call is made to Config."
+}
+
+# CIS 3.13
+
+resource "aws_cloudwatch_metric_alarm" "route_changes" {
+  alarm_name          = "RouteChanges"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = aws_cloudwatch_log_metric_filter.route_changes.id
+  namespace           = "CloudTrailMetrics"
+  period              = "300"
+  statistic           = "Sum"
+  threshold           = "1"
+  treat_missing_data  = "notBreaching"
+  alarm_actions       = [aws_sns_topic.sns_topic_alarms.arn]
+  alarm_description   = "Alarms when an API call is made to change to route tables and routes."
+}
+

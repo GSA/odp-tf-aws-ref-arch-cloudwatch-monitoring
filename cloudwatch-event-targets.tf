@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_target" "sns_s3" {
   rule      = aws_cloudwatch_event_rule.S3.name
   target_id = "CloudWatch-Event-S3"
-  arn       = aws_sns_topic.sns_topic_events.arn
+  arn       = aws_sns_topic.sns_topic_alarms.arn
 
   input_transformer {
     input_paths = {
@@ -39,7 +39,7 @@ INPUT_TEMPLATE_EOF
 resource "aws_cloudwatch_event_target" "sns_awsconfig" {
   rule      = aws_cloudwatch_event_rule.awsconfig.name
   target_id = "CloudWatch-Event-awsconfig"
-  arn       = aws_sns_topic.sns_topic_events.arn
+  arn       = aws_sns_topic.sns_topic_alarms.arn
 
   input_transformer {
     input_paths = {
@@ -75,7 +75,7 @@ INPUT_TEMPLATE_EOF
 resource "aws_cloudwatch_event_target" "sns_ec2" {
   rule      = aws_cloudwatch_event_rule.ec2_changes.name
   target_id = "CloudWatch-Event-ec2-changes"
-  arn       = aws_sns_topic.sns_topic_events.arn
+  arn       = aws_sns_topic.sns_topic_alarms.arn
 
   input_transformer {
     input_paths = {
@@ -113,7 +113,7 @@ INPUT_TEMPLATE_EOF
 resource "aws_cloudwatch_event_target" "sns_cloudtrail_configuration_changes" {
   rule      = aws_cloudwatch_event_rule.cloudtrail_configuration_changes.name
   target_id = "CloudWatch-Event-cloudtrail_configuration_changes"
-  arn       = aws_sns_topic.sns_topic_events.arn
+  arn       = aws_sns_topic.sns_topic_alarms.arn
 
   input_transformer {
     input_paths = {
@@ -149,7 +149,7 @@ INPUT_TEMPLATE_EOF
 resource "aws_cloudwatch_event_target" "sns_network_gateway_changes" {
   rule      = aws_cloudwatch_event_rule.network_gateway_changes.name
   target_id = "CloudWatch-Event-network_gateway_changes"
-  arn       = aws_sns_topic.sns_topic_events.arn
+  arn       = aws_sns_topic.sns_topic_alarms.arn
 
   input_transformer {
     input_paths = {
@@ -185,52 +185,12 @@ INPUT_TEMPLATE_EOF
   }
 }
 
-resource "aws_cloudwatch_event_target" "sns_config_configuration_changes" {
-  rule      = aws_cloudwatch_event_rule.config_configuration_changes.name
-  target_id = "CloudWatch-Event-config_configuration_changes"
-  arn       = aws_sns_topic.sns_topic_events.arn
 
-  input_transformer {
-    input_paths = {
-      "EventTime"       = "$.detail.eventTime"
-      "EventType"       = "$.detail-type"
-      "UserID"          = "$.detail.userIdentity.arn"
-      "AccountID"       = "$.detail.userIdentity.accountId"
-      "SourceIP"        = "$.detail.sourceIPAddress"
-      "UserAgent"       = "$.detail.userAgent"
-      "EventSource"     = "$.detail.eventSource"
-      "AWSRegion"       = "$.detail.awsRegion"
-      "EventName"       = "$.detail.eventName"
-      "EventParameters" = "$.detail.requestParameters[*]"
-    }
-
-    input_template = <<INPUT_TEMPLATE_EOF
-
-   {
-       "Event Time": <EventTime>,
-       "Event Type":<EventType>,
-       "User ID": <UserID>,
-       "Account ID": <AccountID>,
-       "Source IP": <SourceIP>,
-       "User Agent": <UserAgent>,
-       "Event Source": <EventSource>,
-       "AWS Region": <AWSRegion>,
-       "Event Name": <EventName>,
-       "Event Parameters": <EventParameters>
-}
-
-
-
-   
-INPUT_TEMPLATE_EOF
-
-  }
-}
 
 resource "aws_cloudwatch_event_target" "sns_iam_configuration_changes" {
   rule      = aws_cloudwatch_event_rule.iam_configuration_changes.name
   target_id = "CloudWatch-Event-iam_configuration_changes"
-  arn       = aws_sns_topic.sns_topic_events.arn
+  arn       = aws_sns_topic.sns_topic_alarms.arn
 
   input_transformer {
     input_paths = {
@@ -271,7 +231,7 @@ INPUT_TEMPLATE_EOF
 resource "aws_cloudwatch_event_target" "sns_guardduty_findings" {
   rule      = aws_cloudwatch_event_rule.guardduty_findings.name
   target_id = "CloudWatch-Event-guardduty_findings"
-  arn       = aws_sns_topic.sns_topic_events.arn
+  arn       = aws_sns_topic.sns_topic_alarms.arn
 
   input_transformer {
     input_paths = {
@@ -307,7 +267,7 @@ INPUT_TEMPLATE_EOF
 resource "aws_cloudwatch_event_target" "sns_assume_fullAdmin" {
   rule      = aws_cloudwatch_event_rule.assume_fullAdmin_event.name
   target_id = "CloudWatch-Event-Assume-fullAdmin"
-  arn       = aws_sns_topic.sns_topic_events.arn
+  arn       = aws_sns_topic.sns_topic_alarms.arn
 
   input_transformer {
     input_paths = {

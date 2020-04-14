@@ -74,11 +74,7 @@ A Cloudwatch log group and Cloud Trail must setup outside this module.
 
 *  `cloudwatch_log_group` - The name of the pre-exsisting Log Group utilized by Cloudtrail
 
-*  `sns_topic_alarms` - The name of the created SNS Topic for Alarms
-
-*  `sns_topic_events` - The name of the created SNS Topic for Events
-
-*  `sns_topic_events` - The name of the created SNS Topic for Events
+*  `sns_topic_alarms` - The name of the created SNS Topic for Alarms and Events
 
 *  `alarm_namespace` - The namespace in which all alarms are set up
 
@@ -104,7 +100,6 @@ source = "github.com/GSA/odp-tf-aws-ref-arch-cloudwatch-monitoring"
 appenv = "${var.appenv}"
 cloudwatch_log_group = "${var.cloudwatch_log_group}"
 sns_topic_alarms = "${var.sns_topic_alarms}"
-sns_topic_events = "${var.sns_topic_events}"
 }
 ```
 **Remember to subscribe to the SNS Topics!**
